@@ -6,17 +6,12 @@
 }
 
 :root {
-  --hue: 170;
-  --primary-color: hsl(var(--hue), 100%, 26%);
-  --headline: hsl(210, 11%, 15%);
-  --paragraph: hsl(210, 9%, 31%);
-
-  --brand-beige: hsl(39, 100%, 97%);
-  --brand-light: hsl(calc(var(--hue) - 22), 23%, 89%);
-  --brand-light-2: hsl(calc(var(--hue) + 10), 14%, 97%);
-  --brand-dark: hsl(var(--hue), 100%, 14%);
-
-  --bg-light: hsl(180, 14%, 97%);
+  --green: hsl(147, 96%, 42%);
+  --primary: hsl(258, 73%, 62%);
+  --primary-dark: hsl(259, 52%, 48%);
+  --shape-dark: hsl(240, 5%, 25%);
+  --background: hsl(240, 5%, 7%);
+  --background-2: hsl(240, 5%, 11%);
 
   font-size: 62.5%; /* 1rem = 10px */
 
@@ -26,6 +21,7 @@
 html {
   /* chrome://flags/#smooth-scrolling */
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 html,
@@ -37,12 +33,13 @@ body {
 body {
   font-family: 'DM Sans';
   font-size: 1.6rem;
+  color: white;
 
   text-align: center;
 
   overflow: overlay;
 
-  background-color: var(--bg-light);
+  background-color: var(--background);
 }
 
 .wrapper {
@@ -64,13 +61,10 @@ section {
 }
 
 section header h4 {
-  font-size: 1.4rem;
   font-weight: 700;
   line-height: 150%;
   letter-spacing: 0.08rem;
-  color: var(--primary-color);
-
-  text-transform: uppercase;
+  color: var(--green);
 
   margin-bottom: 1.6rem;
 }
@@ -78,13 +72,10 @@ section header h4 {
 section header h2 {
   font-size: 3rem;
   line-height: 3.9rem;
-
-  color: var(--headline);
 }
 
 section header h1 {
-  font-size: 3.4rem;
-  color: var(--headline);
+  font-size: 3rem;
   line-height: 130%;
 
   margin-bottom: 2.4rem;
@@ -92,21 +83,12 @@ section header h1 {
 
 section .content p {
   font-weight: 400;
-  font-size: 1.6rem;
   line-height: 150%;
-
-  color: var(--paragraph);
 }
 
 .button {
-  background: var(--primary-color);
+  border-radius: 0.5rem;
 
-  border: none;
-  border-radius: 4rem;
-
-  margin-bottom: 6rem;
-
-  padding: 1.6rem 3.2rem;
   width: fit-content;
 
   color: white;
@@ -114,49 +96,55 @@ section .content p {
   font-weight: 700;
   text-transform: uppercase;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.6rem;
-
   text-decoration: none;
-
-  transition: background 200ms;
-}
-
-.button:hover {
-  background-color: var(--brand-dark);
 }
 
 .social-links {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3.2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  max-width: 20rem;
 }
 
-/* custom colors */
-#services .card circle {
-  fill: var(--brand-light);
+.social-links li a svg {
+  fill: var(--primary-dark);
 }
 
-#navigation .logo path[fill*='#00856F'],
-#backToTopButton circle {
-  fill: var(--primary-color);
+.social-links li a {
+  background-color: var(--background-2);
+  padding: 1rem;
+  display: flex;
+  border-radius: 0.5rem;
+  transition: 300ms;
 }
 
-button.open-menu path[stroke*='#00856F'],
-#contact li path {
-  stroke: var(--primary-color);
+.social-links li a:hover {
+  background-color: var(--primary-dark);
 }
 
-body.menu-expanded #navigation .logo path,
-#navigation.scroll .logo path {
+.social-links li a:hover svg {
   fill: white;
 }
 
-#navigation.scroll button.open-menu path[stroke*='#00856F'] {
-  stroke: white;
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  /*color: white;*/
+}
+
+.card {
+  padding: 2.4rem;
+  text-align: left;
+
+  border: 1.5px solid var(--shape-dark);
+  border-radius: 0.6rem;
+}
+
+#backToTopButton circle {
+  fill: var(--primary);
 }
 
 /*=== NAVIGATION =================================*/
@@ -170,16 +158,16 @@ nav {
   width: 100vw;
 
   z-index: 100;
+
+  background-color: var(--background);
+
+  border-bottom: 0.1px solid var(--shape-dark);
 }
 
 nav .wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-nav.scroll {
-  background: var(--primary-color);
 }
 
 nav button {
@@ -222,7 +210,7 @@ body.menu-expanded .close-menu {
 body.menu-expanded .menu {
   top: 0;
   left: 0;
-  background: var(--primary-color);
+  background: var(--background);
 
   width: 100vw;
   height: 100vh;
@@ -250,29 +238,29 @@ body.menu-expanded .menu {
   text-decoration: none;
 }
 
+.menu #login {
+  margin-bottom: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+
+  margin-inline: auto;
+}
+
 .menu .button {
-  background: white;
-  border-radius: 4rem;
-  font-weight: 700;
+  background: none;
+  border: 1px solid var(--primary-dark);
+
   font-size: 1.8rem;
   line-height: 2.3rem;
-  text-transform: uppercase;
-  text-decoration: none;
-
-  color: var(--primary-color);
 
   display: inline-block;
   padding: 16px 32px;
 
   margin-top: 4.8rem;
-  margin-bottom: 8rem;
-}
-
-.menu .button:hover {
-  background-color: var(--primary-color);
-  color: white;
-
-  filter: brightness(1.3);
+  margin-bottom: 6rem;
 }
 
 body.menu-expanded .logo,
@@ -281,51 +269,39 @@ body.menu-expanded button {
   z-index: 100;
 }
 
-body.menu-expanded .logo path {
-  fill: white;
+.menu .social-links {
+  margin-inline: auto;
 }
-
-body.menu-expanded button path {
-  stroke: white;
-}
-
 /*=== #HOME =================================*/
 #home {
-  padding-block: 0;
-  padding-top: calc(4.1rem + var(--nav-height));
-}
+  padding-top: calc(10rem + var(--nav-height));
+  padding-bottom: 6rem;
 
-#home::before {
-  content: '';
-  width: 100%;
-  height: calc(76% + var(--nav-height));
-  background-color: var(--brand-light);
-  display: block;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
+  background: url(./assets/background.png) no-repeat center;
+  background-size: cover;
 }
 
 #home .button {
   margin-inline: auto;
+  background-color: var(--primary);
+  border: none;
+  margin-bottom: 6rem;
+  padding: 1.6rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+
+  transition: background 200ms;
+}
+
+#home .button:hover {
+  background-color: var(--primary-dark);
 }
 
 #home p {
-  font-size: 1.8rem;
-  line-height: 150%;
-  font-weight: 400;
-  color: var(--paragraph);
-
   margin-bottom: 3.2rem;
-}
-
-#home img {
-  width: 26.4rem;
-  display: block;
-  margin-inline: auto;
-  object-position: 0 2rem;
 }
 
 #home .stats {
@@ -333,29 +309,31 @@ body.menu-expanded button path {
   padding-block: 4rem;
   margin-inline: auto;
 
-  background-color: var(--brand-beige);
-  border: 1px solid var(--brand-light);
-  border-radius: 0.6rem;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 6rem;
 }
 
+#home .stat {
+  max-width: 28rem;
+  margin-inline: auto;
+}
+
 #home .stat h3 {
   font-size: 4.8rem;
-  color: var(--headline);
+  color: white;
   line-height: 130%;
 
   margin-bottom: 0.4rem;
 }
 
+#home .stat h3 span {
+  color: var(--green);
+}
+
 #home .stat p {
   margin: 0;
-  color: var(--primary-color);
-  font-size: 1.6rem;
-  line-height: 150%;
 }
 
 /*=== SERVICES =================================*/
@@ -363,20 +341,12 @@ body.menu-expanded button path {
   margin-bottom: 6rem;
 }
 
-#services .cards {
-  display: flex;
-  flex-direction: column;
-  gap: 3.2rem;
+#services .card svg circle {
+  fill: var(--primary);
 }
 
-#services .card {
-  padding: 2.4rem;
-  text-align: left;
-
-  background: white;
-
-  border: 1px solid var(--brand-light);
-  border-radius: 0.6rem;
+#services .card svg path {
+  stroke: white;
 }
 
 #services .card h3 {
@@ -386,7 +356,7 @@ body.menu-expanded button path {
 /*=== ABOUT =================================*/
 #about {
   text-align: left;
-  background-color: var(--brand-beige);
+  background-color: var(--background-2);
 }
 
 #about header h2 {
@@ -398,27 +368,69 @@ body.menu-expanded button path {
   margin-bottom: 6rem;
 }
 
+/*=== DEPOSITIONS =================================*/
+#depositions header p {
+  margin-top: 2.4rem;
+  margin-bottom: 6.7rem;
+}
+
+#depositions .card {
+  padding: 3.2rem;
+  background-color: var(--background-2);
+  margin-bottom: 3.2rem;
+}
+
+#depositions .card p {
+  margin-block: 2rem;
+}
+
+#depositions .author {
+  display: flex;
+  gap: 1.6rem;
+  align-items: center;
+  color: var(--primary-dark);
+}
+
+#depositions img {
+  width: 4.2rem;
+  border-radius: 50%;
+}
 /*=== CONTACT =================================*/
 #contact {
-  text-align: left;
+  text-align: center;
+  background-color: var(--background-2);
 }
 
 #contact header {
-  margin-bottom: 3.2rem;
+  margin-block: 3.2rem;
 }
 
-#contact ul {
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-
-  margin-bottom: 3.2rem;
+#contact header span {
+  color: var(--green);
 }
 
-#contact ul li {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
+#contact .content p {
+  margin-top: 2.4rem;
+  margin-bottom: 6.7rem;
+}
+
+#contact .content .button {
+  margin-inline: auto;
+  border: 1px solid var(--primary-dark);
+  padding: 2.5rem 4.5rem;
+  margin-bottom: 0;
+  background: linear-gradient(
+    to right,
+    var(--primary-dark) 50%,
+    var(--background-2) 50%
+  );
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 400ms ease-out;
+}
+
+#contact .content .button:hover {
+  background-position: left bottom;
 }
 
 /*=== FOOTER =================================*/
@@ -428,7 +440,7 @@ footer {
 
   text-align: left;
 
-  color: white;
+  border-top: 0.1px solid var(--shape-dark);
 }
 
 footer .logo {
@@ -507,6 +519,7 @@ footer .social-links {
   /*=== NAVIGATION =================================*/
   /* reset */
   nav#navigation .wrapper * {
+    gap: 0;
     margin: 0;
     padding: 0;
     visibility: initial;
@@ -532,7 +545,7 @@ footer .social-links {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 60%;
+    width: 70%;
   }
 
   nav#navigation .menu ul:nth-child(1) {
@@ -540,59 +553,53 @@ footer .social-links {
     gap: 3.2rem;
   }
 
-  nav#navigation .menu ul li a {
-    color: var(--primary-color);
+  nav#navigation .menu ul:nth-child(2) {
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav#navigation .menu ul:nth-child(1) li a {
+    color: white;
     opacity: 0.7;
   }
 
   nav#navigation .menu a.button {
     display: flex;
-    justify-content: center;
-    align-items: center;
+
     padding: 1rem 2.4rem;
 
-    border: 1px solid var(--primary-color);
-    border-radius: 4rem;
-
-    color: var(--primary-color);
+    color: white;
 
     font-weight: 700;
     font-size: 1.4rem;
     line-height: 1.8rem;
-    text-transform: uppercase;
+    transition: 300ms;
   }
 
-  nav#navigation .menu a.button:hover {
-    background-color: var(--primary-color);
+  nav#navigation .menu #login {
     border: none;
-    color: white;
+    gap: 1.6rem;
   }
 
-  nav#navigation.scroll .menu ul li a {
-    color: var(--brand-light-2);
-    opacity: 0.6;
-  }
-
-  nav#navigation.scroll .menu a.button {
-    border-color: white;
-    color: white;
+  nav#navigation .menu #register:hover {
+    background-color: var(--primary);
   }
 
   nav#navigation .menu li a {
     transition: opacity 0.4s;
   }
 
-  nav#navigation .menu li a.active,
-  nav#navigation .menu li a:hover {
+  nav#navigation .menu ul:nth-child(1) li a.active,
+  nav#navigation .menu ul:nth-child(1) li a:hover {
     opacity: 1;
     font-weight: 700;
   }
 
-  nav#navigation .menu li a::after {
+  nav#navigation .menu ul:nth-child(1) li a::after {
     content: '';
     width: 0%;
     height: 2px;
-    background-color: var(--primary-color);
+    background-color: var(--primary);
 
     position: relative;
     bottom: -2rem;
@@ -603,12 +610,8 @@ footer .social-links {
     transition: width 0.2s;
   }
 
-  nav#navigation.scroll .menu li a::after {
-    background-color: white;
-  }
-
-  nav#navigation .menu li a.active::after,
-  nav#navigation .menu li a:hover::after {
+  nav#navigation .menu ul:nth-child(1) li a.active::after,
+  nav#navigation .menu ul:nth-child(1) li a:hover::after {
     padding-inline: 0.8rem;
     width: 100%;
   }
@@ -618,56 +621,61 @@ footer .social-links {
     opacity: 1;
   }
 
-  nav#navigation.scroll .menu a.button.active,
-  nav#navigation.scroll .menu a.button:hover {
-    background-color: var(--primary-color);
-    filter: brightness(1.3);
-    border: none;
-  }
-
   /*=== HOME =================================*/
-  #home::before {
-    height: calc(96% - var(--nav-height));
-  }
-
   #home {
     padding-top: var(--nav-height);
+    height: 100vh;
+    padding-block: 16rem;
   }
 
   #home .wrapper {
-    grid-template-columns: 60.5rem 1fr;
+    grid-template-rows: 2.5fr 1fr;
     grid-template-areas:
-      'A B'
-      'C C';
+      'A'
+      'B';
+    gap: 5rem;
   }
 
   #home .col-a {
-    text-align: left;
+    text-align: center;
     align-self: center;
   }
 
-  #home h1 {
-    font-size: 5.2rem;
-  }
-
-  #home .content p {
+  #home h4 {
     font-size: 1.8rem;
   }
 
-  #home .stats {
-    grid-area: C;
+  #home h1 {
+    font-size: 5.6rem;
+    max-width: 86rem;
+    margin-inline: auto;
+  }
 
+  #home .content p {
+    max-width: 55rem;
+    margin-inline: auto;
+  }
+
+  #home .content a {
+    margin-inline: auto;
+    padding: 1.6rem 3.2rem;
+    font-size: 1.6rem;
+  }
+
+  #home .stats {
     flex-direction: row;
-    padding: 6rem;
     gap: 0;
   }
 
   #home .stats .stat + .stat {
-    border-left: 1px solid var(--primary-color);
+    border-left: 3px solid var(--primary);
+    margin-left: 3rem;
+    padding-left: 3rem;
   }
 
   #home .stats .stat {
     flex: 1;
+    margin: 0;
   }
 
   #home .button {
@@ -710,22 +718,41 @@ footer .social-links {
     margin-bottom: 0;
   }
 
-  /*=== CONTACT =================================*/
-
-  #contact .wrapper {
-    grid-template-columns: 1fr 57.5rem;
-    grid-template-areas: 'A B';
+  /*=== DEPOSITIONS =================================*/
+  #depositions .wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 26.7rem);
+    gap: 3.2rem;
   }
 
-  #contact h2 {
-    width: 40.4rem;
+  #depositions header {
+    text-align: left;
+  }
+
+  #depositions .card {
+    margin: 0;
+  }
+
+  /*=== CONTACT =================================*/
+  #contact .wrapper {
+    grid-template-columns: 57rem 1fr;
+    grid-template-areas: 'B A';
+    gap: 3rem;
+  }
+
+  #contact .col-b {
+    text-align: left;
+  }
+
+  #contact .content .button {
+    margin: 0;
   }
 
   /*=== FOOTER =================================*/
   footer {
     padding-block: 8rem;
   }
-  
+
   footer .wrapper {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 'A B';
@@ -735,15 +762,12 @@ footer .social-links {
     align-self: center;
   }
 
-
   footer .col-b {
     align-self: center;
     justify-self: flex-end;
   }
 
   footer p {
-    margin-bottom: 0
+    margin-bottom: 0;
   }
 }
-
-
